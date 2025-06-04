@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Тест с ограниченным временем</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      max-width: 800px;
+    }
+    #timer {
+      font-size: 1.2em;
+      color: #d9534f;
+      margin-bottom: 20px;
+    }
+    .question {
+      margin-bottom: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .question p {
+      margin: 0 0 10px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    input[type="radio"],
+    input[type="checkbox"] {
+      margin-right: 8px;
+    }
+    textarea {
+      width: 100%;
+      height: 80px;
+      resize: vertical;
+    }
+    button {
+      padding: 8px 16px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+    #results {
+      display: none;
+      margin-top: 30px;
+      padding: 15px;
+      border: 2px solid #5cb85c;
+      border-radius: 4px;
+      background-color: #f9f9f9;
+    }
+  </style>
+</head>
+<body>
+  <h1>Тест с ограниченным временем</h1>
+  <div id="timer">
+    Время осталось: <span id="time">00:00</span>
+  </div>
+
+  <form id="quizForm">
+    <!-- Вопрос 1 -->
+    <div class="question" data-correct="A">
+      <p>1. Определив, по какому признаку сгруппированы существительные, укажите лишнее.</p>
+      <p>
+        I:&nbsp;выскочка, зазнайка, заика, парнишка, забияка<br />
+        II:&nbsp;батюшка, сынишка, соловушка, зайчишка, трусишка
+      </p>
+      <label><input type="radio" name="q1" value="A" />A) I – общего рода, парнишка; II – мужского рода, трусишка</label>
+      <label><input type="radio" name="q1" value="B" />B) I – общего рода, заика; II – общего рода, сынишка</label>
+      <label><input type="radio" name="q1" value="C" />C) I – общего рода, выскочка; II – общего рода, батюшка</label>
+      <label><input type="radio" name="q1" value="D" />D) I – мужского рода, зазнайка; II – мужского рода, зайчишка</label>
+      <label><input type="radio" name="q1" value="E" />E) I – мужского рода, забияка; II – общего рода, соловушка</label>
+    </div>
+
+    <!-- Вопрос 2 -->
+    <div class="question" data-correct="E">
+      <p>2. В предложении “Дождливая погода стояла в продолжени... длительного времени” пишется:</p>
+      <label><input type="radio" name="q2" value="A" />A) е; непроизводный предлог</label>
+      <label><input type="radio" name="q2" value="B" />B) е; в существительное на -ие в В. п.</label>
+      <label><input type="radio" name="q2" value="C" />C) и; существительное на -ие в П. п.</label>
+      <label><input type="radio" name="q2" value="D" />D) и; составной предлог</label>
+      <label><input type="radio" name="q2" value="E" />E) е; производный предлог</label>
+    </div>
+
+    <!-- Вопрос 3 -->
+    <div class="question" data-correct="C">
+      <p>3. В каком предложении, если переделать его в бессоюзное сложное, следует поставить двоеточие?</p>
+      <label><input type="radio" name="q3" value="A" />A) Воздух дышит весенним ароматом, и вся природа преображается.</label>
+      <label><input type="radio" name="q3" value="B" />B) Источник утоляет жажду, а доброе слово оживляет сердце.</label>
+      <label><input type="radio" name="q3" value="C" />C) Учёный рассказал, что они исследовали эту местность с самолёта.</label>
+      <label><input type="radio" name="q3" value="D" />D) Если хочешь достичь цели, не отступай перед трудностями.</label>
+      <label><input type="radio" name="q3" value="E" />E) Весь день шёл проливной дождь, так что выйти на улицу невозможно.</label>
+    </div>
+
+    <!-- Вопрос 4 -->
+    <div class="question" data-correct="C">
+      <p>4. Укажите ошибку в определении синтаксической роли инфинитива.</p>
+      <label><input type="radio" name="q4" value="A" />A) Сквозь туман начал слабо пробиваться солнечный луч.</label>
+      <label><input type="radio" name="q4" value="B" />B) Я советую тебе вернуться домой.</label>
+      <label><input type="radio" name="q4" value="C" />C) Колонна продолжала двигаться вперёд.</label>
+      <label><input type="radio" name="q4" value="D" />D) Рыбаки расположились на берегу реки ловить рыбу.</label>
+      <label><input type="radio" name="q4" value="E" />E) У меня была мечта путешествовать по свету.</label>
+    </div>
+
+    <!-- Вопрос 5 -->
+    <div class="question" data-correct="C">
+      <p>5. Укажите сложные предложения с параллельным и последовательным подчинением.</p>
+      <label><input type="radio" name="q5" value="A" />A) Когда все расселись, и когда всем принесли чаю, генерал изложил, в чём состоит дело.</label>
+      <label><input type="radio" name="q5" value="B" />B) Люди так устали, что, когда они дошли до лагеря, все легли на землю.</label>
+      <label><input type="radio" name="q5" value="C" />C) Когда старик появился, ему навстречу вышел доктор, который сообщил, что приедет через два дня.</label>
+      <label><input type="radio" name="q5" value="D" />D) Надо, чтобы эти колья заколачивались так, чтобы их потом нельзя было выдернуть.</label>
+      <label><input type="radio" name="q5" value="E" />E) Я сказал слово “обыкновенно” и понял, насколько оно не соответствует тому, что происходило с нами.</label>
+    </div>
+
+    <!-- Вопрос 6 -->
+    <div class="question" data-correct="B">
+      <p>6. В предложении “Дорога вилась между полей пшеницы, ещё не созревшей, но уже принявшей восковую окраску” не пишется раздельно, так как стоит перед:</p>
+      <label><input type="radio" name="q6" value="A" />A) деепричастием с зависимым словом</label>
+      <label><input type="radio" name="q6" value="B" />B) полным причастием с зависимым словом</label>
+      <label><input type="radio" name="q6" value="C" />C) относительным прилагательным</label>
+      <label><input type="radio" name="q6" value="D" />D) кратким причастием</label>
+      <label><input type="radio" name="q6" value="E" />E) качественным прилагательным с противопоставлением</label>
+    </div>
+
+    <!-- Вопрос 7 -->
+    <div class="question" data-correct="A">
+      <p>7. Укажите правильное объяснение постановки или отсутствия запятой в предложении “Он был прирождённым рассказчиком() и любая рассказанная им история вызывала живой интерес у слушателей”.</p>
+      <label><input type="radio" name="q7" value="A" />A) Запятая нужна, потому что союз и соединяет части сложного предложения.</label>
+      <label><input type="radio" name="q7" value="B" />B) Запятая не нужна, потому что имеется общий второстепенный член предложения.</label>
+      <label><input type="radio" name="q7" value="C" />C) Запятая не нужна, потому что союз и соединяет однородные члены предложения.</label>
+      <label><input type="radio" name="q7" value="D" />D) Запятая не нужна, потому что части сложного предложения, соединяемые союзом и, имеют общее придаточное предложение.</label>
+      <label><input type="radio" name="q7" value="E" />E) Запятая нужна, потому что союз и соединяет однородные члены предложения.</label>
+    </div>
+
+    <!-- Вопрос 8 -->
+    <div class="question" data-correct="D">
+      <p>8. Укажите предложение с речевой ошибкой:</p>
+      <label><input type="radio" name="q8" value="A" />A) Мы подготовили около двухсот специалистов.</label>
+      <label><input type="radio" name="q8" value="B" />B) Экзамен был сдан успешно благодаря хорошей подготовке студентов.</label>
+      <label><input type="radio" name="q8" value="C" />C) Настоящими приметами считаются те, по которым определяют погоду и время.</label>
+      <label><input type="radio" name="q8" value="D" />D) В своих заметках геолог подробно описывает о месторождениях цветных металлов.</label>
+      <label><input type="radio" name="q8" value="E" />E) В соревнованиях наши спортсмены одержали победу.</label>
+    </div>
+
+    <!-- Вопрос 9 -->
+    <div class="question" data-correct="C">
+      <p>9. Не имеет логической связи с остальными четырьмя слово:</p>
+      <label><input type="radio" name="q9" value="A" />A) джинсы</label>
+      <label><input type="radio" name="q9" value="B" />B) шаровары</label>
+      <label><input type="radio" name="q9" value="C" />C) кроссовки</label>
+      <label><input type="radio" name="q9" value="D" />D) брюки</label>
+      <label><input type="radio" name="q9" value="E" />E) шорты</label>
+    </div>
+
+    <!-- Вопрос 10 -->
+    <div class="question" data-correct="A">
+      <p>10. Решите кластер, указав словосочетания с определительным грамматическим значением:</p>
+      <ol>
+        <li>встретил друга</li>
+        <li>честный человек</li>
+        <li>нужен близким</li>
+        <li>пирог с яблоками</li>
+        <li>важные дела</li>
+      </ol>
+      <label><input type="radio" name="q10" value="A" />A) 2, 4, 5</label>
+      <label><input type="radio" name="q10" value="B" />B) 3, 5</label>
+      <label><input type="radio" name="q10" value="C" />C) 1, 2</label>
+      <label><input type="radio" name="q10" value="D" />D) 1, 4, 5</label>
+      <label><input type="radio" name="q10" value="E" />E) 2, 3, 4</label>
+    </div>
+
+    <!-- Вопрос 11 -->
+    <div class="question" data-correct="E">
+      <p>11. В каком предложении есть усилительная частица?</p>
+      <label><input type="radio" name="q11" value="A" />A) То задание он выполнил с лёгкостью.</label>
+      <label><input type="radio" name="q11" value="B" />B) То набегали тучи, то небо вдруг прояснялось.</label>
+      <label><input type="radio" name="q11" value="C" />C) Кто-то позвонил в дверь и исчез.</label>
+      <label><input type="radio" name="q11" value="D" />D) Как-то на рассвете заглянул я в сад.</label>
+      <label><input type="radio" name="q11" value="E" />E) Ему-то не понять этого никогда.</label>
+    </div>
+
+    <!-- Вопрос 12 -->
+    <div class="question" data-correct="C">
+      <p>12. Решите кластер, указав верное по данному предложению:</p>
+      <blockquote>
+        Всё лето дни стояли жаркие, однако в роще свежо.
+      </blockquote>
+      <ol>
+        <li>одновременность явлений</li>
+        <li>обе части двусоставные</li>
+        <li>две грамматические основы</li>
+        <li>противительный союз</li>
+        <li>части неравноправны</li>
+      </ol>
+      <label><input type="radio" name="q12" value="A" />A) 2, 3, 5</label>
+      <label><input type="radio" name="q12" value="B" />B) 1, 3</label>
+      <label><input type="radio" name="q12" value="C" />C) 3, 4</label>
+      <label><input type="radio" name="q12" value="D" />D) 2, 4</label>
+      <label><input type="radio" name="q12" value="E" />E) 1, 4, 5</label>
+    </div>
+
+    <!-- Вопрос 13 -->
+    <div class="question" data-correct="D">
+      <p>13. Укажите определительные местоимения:</p>
+      <label><input type="radio" name="q13" value="A" />A) свой</label>
+      <label><input type="radio" name="q13" value="B" />B) никакой</label>
+      <label><input type="radio" name="q13" value="C" />C) такой</label>
+      <label><input type="radio" name="q13" value="D" />D) каждый</label>
+      <label><input type="radio" name="q13" value="E" />E) некоторый</label>
+    </div>
+
+    <!-- Вопрос 14 -->
+    <div class="question" data-correct="A">
+      <p>14. Числительное “первый” является порядковым, потому что:</p>
+      <label><input type="radio" name="q14" value="A" />A) отвечает на вопрос “какой?”</label>
+      <label><input type="radio" name="q14" value="B" />B) обозначается целым числом</label>
+      <label><input type="radio" name="q14" value="C" />C) изменяется только по родам</label>
+      <label><input type="radio" name="q14" value="D" />D) обозначает часть от целого</label>
+      <label><input type="radio" name="q14" value="E" />E) иметь две падежные формы</label>
+    </div>
+
+    <!-- Вопрос 15 -->
+    <div class="question" data-correct="A">
+      <p>15. Укажите ряд слов с нулевым окончанием:</p>
+      <label><input type="radio" name="q15" value="A" />A) грустил, область, овечий</label>
+      <label><input type="radio" name="q15" value="B" />B) учёт, гончий, название</label>
+      <label><input type="radio" name="q15" value="C" />C) новость, заросли, жалюзи</label>
+      <label><input type="radio" name="q15" value="D" />D) гвоздь, повесть, летний</label>
+      <label><input type="radio" name="q15" value="E" />E) выстрел, блестел, внутри</label>
+    </div>
+
+    <!-- Вопрос 16 -->
+    <div class="question" data-correct="A">
+      <p>16. Сказуемое определённо-личного предложения выражается глаголом в форме:</p>
+      <label><input type="radio" name="q16" value="A" />A) 1-го или 2-го лица</label>
+      <label><input type="radio" name="q16" value="B" />B) 1-го или 3-го лица</label>
+      <label><input type="radio" name="q16" value="C" />C) только 2-го лица</label>
+      <label><input type="radio" name="q16" value="D" />D) 2-го или 3-го лица</label>
+      <label><input type="radio" name="q16" value="E" />E) только 3-го лица</label>
+    </div>
+
+    <!-- Вопрос 17 -->
+    <div class="question" data-correct="B">
+      <p>17. От глаголов какого ряда можно образовать четыре формы причастия?</p>
+      <label><input type="radio" name="q17" value="A" />A) видеть, унести</label>
+      <label><input type="radio" name="q17" value="B" />B) атаковать, обещать</label>
+      <label><input type="radio" name="q17" value="C" />C) носить, прочитать</label>
+      <label><input type="radio" name="q17" value="D" />D) бросить, казнить</label>
+      <label><input type="radio" name="q17" value="E" />E) пожелать, любить</label>
+    </div>
+
+    <!-- Вопрос 18 -->
+    <div class="question" data-correct="B">
+      <p>18. Выберите верный вариант заполнения диаграммы Венна, сравнив прилагательные в предложении:<br />
+      “Это задача более сложная.  Самый умный кот мой.”</p>
+      <label><input type="radio" name="q18" value="A" />A) I – в превосходной степени; II – в сравнительной степени; III – качественные</label>
+      <label><input type="radio" name="q18" value="B" />B) I – сравнительной степени; II – в превосходной степени; III – составные формы</label>
+      <label><input type="radio" name="q18" value="C" />C) I – является определением; II – является сказуемым; III – превосходной степени</label>
+      <label><input type="radio" name="q18" value="D" />D) I – является сказуемым; II – является определением; III – сравнительной степени</label>
+      <label><input type="radio" name="q18" value="E" />E) I – качественное; II – притяжательное; III – определения</label>
+    </div>
+
+    <!-- Вопрос 19 -->
+    <div class="question" data-correct="E">
+      <p>19. В каком предложении оба выделенных слова пишутся слитно?</p>
+      <label><input type="radio" name="q19" value="A" />A) Мальчик оказался в(начале) площади, во(круг) которой находились торговые лавки.</label>
+      <label><input type="radio" name="q19" value="B" />B) Берись (за) то, чему ты сроден, коль хочешь, что(б) в делах успешный был конец.</label>
+      <label><input type="radio" name="q19" value="C" />C) Во(время) сильных бури вывернуло с корнем старую сосну, (от)чего и образовалась эта яма.</label>
+      <label><input type="radio" name="q19" value="D" />D) И вот однажды явились (откуда) то иные племена и прогнали прежних в(глубь) леса.</label>
+      <label><input type="radio" name="q19" value="E" />E) В(последствии), вспоминая слова, которые казались незначительными, я расшифровываю их и (за)частую понимал смысл.</label>
+    </div>
+
+    <!-- Вопрос 20 -->
+    <div class="question" data-correct="B">
+      <p>20. Укажите слово, соответствующее следующей характеристике:<br />
+      8 звуков<br />
+      5 звонких согласных звуков<br />
+      3 слога</p>
+      <label><input type="radio" name="q20" value="A" />A) приятель</label>
+      <label><input type="radio" name="q20" value="B" />B) дежурный</label>
+      <label><input type="radio" name="q20" value="C" />C) дымоход</label>
+      <label><input type="radio" name="q20" value="D" />D) подснежник</label>
+      <label><input type="radio" name="q20" value="E" />E) подписаться</label>
+    </div>
+
+    <!-- Вопрос 21 -->
+    <div class="question" data-correct="D">
+      <p>21. Выделенные слова в словосочетаниях “проходить мимо дома”, “находиться около школы” являются:</p>
+      <label><input type="radio" name="q21" value="A" />A) местоимениями</label>
+      <label><input type="radio" name="q21" value="B" />B) частицами</label>
+      <label><input type="radio" name="q21" value="C" />C) наречиями</label>
+      <label><input type="radio" name="q21" value="D" />D) предлогами</label>
+      <label><input type="radio" name="q21" value="E" />E) союзами</label>
+    </div>
+
+    <!-- Вопрос 22 -->
+    <div class="question" data-correct="B">
+      <p>22. Укажите разряды наречий в предложении: “Ровно тянулся ввысь густой дым”.</p>
+      <label><input type="radio" name="q22" value="A" />A) цели, меры, степени</label>
+      <label><input type="radio" name="q22" value="B" />B) образа действия, места</label>
+      <label><input type="radio" name="q22" value="C" />C) времени, образа действия</label>
+      <label><input type="radio" name="q22" value="D" />D) места, причины</label>
+      <label><input type="radio" name="q22" value="E" />E) времени, цели</label>
+    </div>
+
+    <!-- Вопрос 23 (чекбоксы, несколько правильных) -->
+    <div class="question">
+      <p>23. Ко II спряжению не относятся глаголы (отметьте все правильные):</p>
+      <label><input type="checkbox" name="q23" value="1" />1) лечить</label>
+      <label><input type="checkbox" name="q23" value="2" />2) вертеть</label>
+      <label><input type="checkbox" name="q23" value="3" />3) дышать</label>
+      <label><input type="checkbox" name="q23" value="4" />4) прятать</label>
+      <label><input type="checkbox" name="q23" value="5" />5) руководить</label>
+      <label><input type="checkbox" name="q23" value="6" />6) лаять</label>
+      <p><em>Правильные ответы:</em> 4, 6</p>
+    </div>
+
+    <!-- Вопрос 24 (чекбоксы) -->
+    <div class="question">
+      <p>24. На месте каких цифр пишется одна “н” в предложении:  
+      “На импровизирова(1)ом столе, украше(2)ом полевыми цветами, лежали сушё(3)ые фрукты, масле(4)ые блины с гуси(5)ым паштетом.”</p>
+      <label><input type="checkbox" name="q24" value="1" />1</label>
+      <label><input type="checkbox" name="q24" value="2" />2</label>
+      <label><input type="checkbox" name="q24" value="3" />3</label>
+      <label><input type="checkbox" name="q24" value="4" />4</label>
+      <label><input type="checkbox" name="q24" value="5" />5</label>
+      <p><em>Правильные ответы:</em> 3, 4, 5</p>
+    </div>
+
+    <!-- Вопрос 25 (чекбоксы) -->
+    <div class="question">
+      <p>25. Продолжите предложение так, чтобы получились сложноподчинённые предложения (знаки препинания не расставлены):<br />
+      “Он не ответил на вопрос.”</p>
+      <ol>
+        <li>и отвернувшись ушёл</li>
+        <li>несмотря на всеобщее внимание к нему</li>
+        <li>и это вызвало большие подозрения</li>
+        <li>хотя знал ответ на него</li>
+        <li>потому что болезненны были воспоминания</li>
+      </ol>
+      <label><input type="checkbox" name="q25" value="1" />1</label>
+      <label><input type="checkbox" name="q25" value="2" />2</label>
+      <label><input type="checkbox" name="q25" value="3" />3</label>
+      <label><input type="checkbox" name="q25" value="4" />4</label>
+      <label><input type="checkbox" name="q25" value="5" />5</label>
+      <p><em>Правильные ответы:</em> 4, 5</p>
+    </div>
+
+    <!-- Вопрос 26 (чекбоксы) -->
+    <div class="question">
+      <p>26. Укажите предложения, в которых однородные члены связываются разделительными союзами:</p>
+      <ol>
+        <li>В местах обитания ежей нет ни насекомых, ни мышей.</li>
+        <li>Зарево распространилось не только над городом, но и далеко вокруг.</li>
+        <li>Что-то ярко горело: не то состав, не то станция.</li>
+        <li>Дождь шёл порывами, переходя то в ливень, то в изморось.</li>
+        <li>Стоят угрюмых гор вершины и дремлют в вечной тишине.</li>
+        <li>Он или не расслышал сказанное, или пренебрег неуместным намёком.</li>
+      </ol>
+      <label><input type="checkbox" name="q26" value="1" />1</label>
+      <label><input type="checkbox" name="q26" value="2" />2</label>
+      <label><input type="checkbox" name="q26" value="3" />3</label>
+      <label><input type="checkbox" name="q26" value="4" />4</label>
+      <label><input type="checkbox" name="q26" value="5" />5</label>
+      <label><input type="checkbox" name="q26" value="6" />6</label>
+      <p><em>Правильные ответы:</em> 1, 4, 6</p>
+    </div>
+
+    <!-- Вопрос 27 -->
+    <div class="question">
+      <p>27. Установите соответствие. Сложное предложение с:<br />
+      1) подчинительной, бессоюзной связью<br />
+      2) подчинительной, бессоюзной, подчинительной связью</p>
+      <ol type="a">
+        <li>Почтенный замок был построен, как замки строиться должны: отменно прочен и спокоен во вкусе умной старины.</li>
+        <li>Он сердцем милый был невежда, его лелеяла надежда, и мира новый блеск и шум ещё пленяли юный ум.</li>
+        <li>Я знаю: век уж мой измерен; Но чтоб продлилась жизнь моя, я утром должен быть уверен, что с вами днём увижусь я.</li>
+        <li>Я понимал, что выручить нас может только случайность: мы наткнёмся на брошенную лодку.</li>
+        <li>Был уже рассвет, когда я проснулся; в окно видно было, как горела утренняя заря.</li>
+      </ol>
+      <p><em>Правильное соответствие:</em> 1 – a, d; 2 – e</p>
+    </div>
+
+    <!-- Вопрос 28 (открытый) -->
+    <div class="question">
+      <p>28. Исходя из данного контекста (прочитайте текст выше), раскройте значение выделенного слова.</p>
+      <textarea name="q28" placeholder="Ваш ответ..."></textarea>
+    </div>
+
+    <!-- Вопрос 29 (открытый) -->
+    <div class="question">
+      <p>29. Составьте 2 предложения, используя подчёркнутые в тексте слова в художественном и научном стилях.</p>
+      <textarea name="q29" placeholder="Два предложения..."></textarea>
+    </div>
+
+    <!-- Вопрос 30 (открытый) -->
+    <div class="question">
+      <p>30. Подумайте и ответьте своими словами на вопрос “Каким показан дед Агафон в данном отрывке?” Аргументируйте свой ответ двумя примерами из текста.</p>
+      <textarea name="q30" placeholder="Ваш ответ..."></textarea>
+    </div>
+
+    <button type="button" id="submitBtn">Завершить тест</button>
+  </form>
+
+  <div id="results">
+    <h2>Ваши результаты:</h2>
+    <p id="scoreText"></p>
+    <p><em>Обрати внимание: вопросы 23–27 отмечены для самостоятельной проверки (несколько правильных вариантов), а вопросы 28–30 требуют развернутых ответов.</em></p>
+  </div>
+
+  <script>
+    // ====== quiz.js внутри этого <script> ======
+    const TOTAL_TIME_SEC = 10 * 60; // 10 минут — при необходимости поменяйте
+    let timeLeft = TOTAL_TIME_SEC;
+    let timerInterval = null;
+
+    window.addEventListener('DOMContentLoaded', () => {
+      startTimer();
+      document.getElementById('submitBtn').addEventListener('click', showResults);
+    });
+
+    function startTimer() {
+      updateTimerDisplay(timeLeft);
+      timerInterval = setInterval(() => {
+        timeLeft--;
+        updateTimerDisplay(timeLeft);
+        if (timeLeft <= 0) {
+          clearInterval(timerInterval);
+          showResults();
+        }
+      }, 1000);
+    }
+
+    function updateTimerDisplay(seconds) {
+      const mins = String(Math.floor(seconds / 60)).padStart(2, '0');
+      const secs = String(seconds % 60).padStart(2, '0');
+      document.getElementById('time').textContent = `${mins}:${secs}`;
+    }
+
+    function showResults() {
+      clearInterval(timerInterval);
+      document.getElementById('submitBtn').disabled = true;
+
+      // Собираем все вопросы с data-correct (1–22)
+      const autoQuestions = document.querySelectorAll('.question[data-correct]');
+      let correctCount = 0;
+      const totalAuto = autoQuestions.length;
+
+      autoQuestions.forEach(questionDiv => {
+        const correctAns = questionDiv.getAttribute('data-correct');
+        const radioOptions = questionDiv.querySelectorAll('input[type="radio"]');
+        if (radioOptions.length) {
+          let userAnswer = null;
+          radioOptions.forEach(radio => {
+            if (radio.checked) userAnswer = radio.value;
+          });
+          if (userAnswer === correctAns) correctCount++;
+        }
+      });
+
+      // Показать результат проверки автоматических вопросов
+      document.getElementById('scoreText').textContent =
+        `Автоматически проверяемые вопросы (1–22): вы ответили правильно на ${correctCount} из ${totalAuto}.`;
+
+      document.getElementById('quizForm').style.display = 'none';
+      document.getElementById('results').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
